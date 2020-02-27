@@ -29,7 +29,7 @@ Plot the mean vaccination rate for each state.
 measles %>% filter(mmr > -1) %>% group_by(state)  %>%
         summarise(mean_mmr = mean(mmr)) %>% ungroup() %>%
         mutate(state = fct_reorder(state, mean_mmr), mean_mmr = round(mean_mmr,         1)) %>% 
-       ggplot(aes(x = state, y = mean_mmr)) +geom_point(size = 7.5, color =             "black") + geom_segment(aes(xend = state, y=50, yend = mean_mmr)) +             geom_text(aes(label = mean_mmr), size = 2, color = "white") +coord_flip() +       geom_hline(yintercept = 95) # 95 is the extreme good point
+       ggplot(aes(x = state, y = mean_mmr)) +geom_point(size = 7.5, color = "black") + geom_segment(aes(xend = state, y=50, yend =              mean_mmr)) + geom_text(aes(label = mean_mmr), size = 2, color = "white") +coord_flip() + geom_hline(yintercept = 95) # 95 is the        extreme good point
 
 ```
 
@@ -51,7 +51,7 @@ measles %>% filter(mmr > -1) %>%
   group_by(county) %>% summarise(mean_mmr = mean(mmr)) %>% ungroup() %>%
   filter(mean_mmr >= 95) %>%
   mutate(county = fct_reorder(county, mean_mmr),   mean_mmr = mean_mmr) %>%
-  ggplot(aes(x = county, y = mean_mmr )) + geom_point(color = "white") +           labs(title = "Lollipop chart of average mmr vaccination rate of each county in   California") + theme_dark() +
+  ggplot(aes(x = county, y = mean_mmr )) + geom_point(color = "white") + labs(title = "Lollipop chart of average mmr vaccination rate of   each county in   California") + theme_dark() +
   theme(axis.text.x = element_text(size = 7,angle =90))   
 ```
 
